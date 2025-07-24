@@ -39,3 +39,29 @@
 
 # debug information files
 *.dwo
+
+# Visual Studio 2022
+.vs/
+.vscode/
+*.vcxproj*
+*.sln
+*.user
+*.suo
+*.ipch
+*.opensdf
+*.sdf
+*.cache
+*.VC.db
+*.VC.opendb
+*.tlog/
+*.log
+*.lastbuildstate
+*.dbmdl
+*.psess
+*.vsp
+*.vspx
+*.vspscc
+*.vssscc
+*.ncb
+*.sbr
+*.scc
