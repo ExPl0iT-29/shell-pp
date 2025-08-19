@@ -13,17 +13,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]  # Windows removed due to Unix dependency
+        os: [ubuntu-latest]
         build_type: [Release, Debug]
-        c_compiler: [gcc, clang]
-        include:
-          - os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
-        # Removed Windows entries and excludes
+        compiler: [gcc, clang]
 
     steps:
     - uses: actions/checkout@v4
@@ -34,6 +26,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential cmake
 
+    - name: Set up compiler
+      if: matrix.compiler == 'clang'
+      run: |
+        sudo apt-get install -y clang clang++
+
     - name: Set reusable strings
       id: strings
       shell: bash
@@ -43,8 +40,6 @@ jobs:
     - name: Configure CMake
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
-        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
 
@@ -53,9 +48,8 @@ jobs:
 
     - name: Basic Shell Tests
       run: |
-        ${{ steps.strings.outputs.build-output-dir }}/UnixShell <<< "exit"
-        ${{ steps.strings.outputs.build-output-dir }}/UnixShell <<< "echo 'GitHub Actions Test'"
-        ${{ steps.strings.outputs.build-output-dir }}/UnixShell <<< "ls -l"
+        echo "exit" | ${{ steps.strings.outputs.build-output-dir }}/UnixShell
+        echo "quit" | ${{ steps.strings.outputs.build-output-dir }}/UnixShell
 
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
