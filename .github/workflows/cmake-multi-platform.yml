@@ -29,7 +29,10 @@ jobs:
     - name: Set up compiler
       if: matrix.compiler == 'clang'
       run: |
-        sudo apt-get install -y clang clang++
+        # Use the default clang that's already available on Ubuntu runners
+        echo "Using default clang compiler"
+        clang --version
+        clang++ --version
 
     - name: Clean build directory
       run: |
