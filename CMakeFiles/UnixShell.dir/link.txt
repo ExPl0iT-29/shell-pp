@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Werror -Wl,--dependency-file=CMakeFiles/UnixShell.dir/link.d CMakeFiles/UnixShell.dir/src/Parser.cpp.o CMakeFiles/UnixShell.dir/src/main.cpp.o -o UnixShell

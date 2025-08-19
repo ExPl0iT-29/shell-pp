@@ -7,7 +7,6 @@ std::vector<Parser::ParsedCommand> Parser::parse(const std::string& input) {
     ParsedCommand current_cmd;
     std::string current_token;
     State state = State::Normal;
-    char quote_char = '\0';
 
     for (size_t i = 0; i < input.size(); ++i) {
         const char c = input[i];
@@ -16,11 +15,9 @@ std::vector<Parser::ParsedCommand> Parser::parse(const std::string& input) {
         case State::Normal:
             if (c == '\'') {
                 state = State::SingleQuote;
-                quote_char = c;
             }
             else if (c == '"') {
                 state = State::DoubleQuote;
-                quote_char = c;
             }
             else if (c == '\\') {
                 state = State::Escape;

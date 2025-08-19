@@ -1,0 +1,3 @@
+/home/explooit/Disk-1/Resume Projects/shell-cpp/shell-pp/shell-pp/build/CMakeFiles/UnixShell.dir
+/home/explooit/Disk-1/Resume Projects/shell-cpp/shell-pp/shell-pp/build/CMakeFiles/edit_cache.dir
+/home/explooit/Disk-1/Resume Projects/shell-cpp/shell-pp/shell-pp/build/CMakeFiles/rebuild_cache.dir
